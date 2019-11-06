@@ -15,7 +15,7 @@ INCLUDE = $(addprefix -I, inc/)
 AS_FLAGS =
 
 # Compiler flags
-CC_FLAGS = -mstm8 --out-fmt-elf -c --debug --opt-code-size --gas --function-sections --data-sections $(INCLUDE)
+CC_FLAGS = -mstm8 --out-fmt-elf -c --debug --opt-code-size --asm=gas --function-sections --data-sections $(INCLUDE)
 
 # Path definitions
 PROJECT = STM8
@@ -27,9 +27,8 @@ VPATH += src
 OBJECTS = $(addprefix $(OBJ_DIR)/, main.o bar.o)
 
 # Linker flags
-LD_FLAGS = -T./elf32stm8.x --print-memory-usage --gc-sections -Map $(OBJ_DIR)/map_$(PROJECT).map
-LIB_DIRS = $(addprefix -L, /usr/local/share/sdcc/lib/stm8 lib)
-LIBS = $(apprefix -l, stm8 stm8s)
+LD_FLAGS = -T./elf32stm8s003f3.x --print-memory-usage --gc-sections -Map $(OBJ_DIR)/map_$(PROJECT).map
+LIB_DIRS = $(addprefix -L, /usr/local/share/sdcc/lib/stm8)
 
 # Source dependencies:
 DEPS = $(OBJECTS:.o=.d)
